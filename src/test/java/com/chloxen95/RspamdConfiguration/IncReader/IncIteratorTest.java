@@ -1,4 +1,4 @@
-package com.chloxen95.RspamdConfiguration.ConfReader;
+package com.chloxen95.RspamdConfiguration.IncReader;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,6 +23,7 @@ public class IncIteratorTest {
 
 	Map<String, Object> tranResultMap = new HashMap<>();
 	List<Object> tranResultList = new ArrayList<>();
+	String varName = "";
 
 	/**
 	 * ∂¡»°±‰¡ø£∫check_all_filters = false;
@@ -37,7 +38,7 @@ public class IncIteratorTest {
 				: varKV[1].trim();
 		// long t2 = System.currentTimeMillis() - t1;
 		tranResultMap.put(varKey, varValue);
-		System.out.println(tranResultMap);
+		printVar(2);
 	}
 
 	/**
@@ -48,8 +49,6 @@ public class IncIteratorTest {
 	public void testReadList() {
 		String[] varList = { "classify_headers = [", "		\"User-Agent\",", "		\"X-Mailer\",",
 				"		\"Content-Type\",", "		\"X-MimeOLE\",", "];" };
-
-		String varName = null;
 
 		for (String t : varList) {
 			String temp = t.trim();
@@ -62,8 +61,7 @@ public class IncIteratorTest {
 			else if (temp.startsWith("]"))
 				break;
 		}
-		System.out.println(varName);
-		System.out.println(tranResultList);
+		printVar(1);
 	}
 
 	/**
@@ -73,8 +71,6 @@ public class IncIteratorTest {
 	@Test
 	public void testReadMap() {
 		String[] varMap = { "dns {", " timeout = 1s;", " sockets = 16;", " retransmits = 5;", "}" };
-
-		String varName = null;
 
 		for (String t : varMap) {
 			String temp = t.trim();
@@ -90,9 +86,16 @@ public class IncIteratorTest {
 			}
 		}
 
-		System.out.println(varName);
-		System.out.println(tranResultMap);
+		printVar(2);
 
+	}
+	
+	private void printVar(int index){
+		System.out.println(varName);
+		if(index == 1)
+			System.out.println(tranResultList);
+		else if(index == 2)
+			System.out.println(tranResultMap);
 	}
 
 }

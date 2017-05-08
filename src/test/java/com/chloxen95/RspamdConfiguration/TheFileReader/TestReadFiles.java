@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import org.junit.Test;
-import org.springframework.aop.IntroductionAwareMethodMatcher;
 
 public class TestReadFiles {
 
@@ -24,14 +23,15 @@ public class TestReadFiles {
 			throw new FileNotFoundException();
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String temp = null;
-		StringBuffer sb = new StringBuffer();
 		temp = br.readLine();
 		// System.out.println(temp);
 		while (temp != null) {
+			// 判断是否为注释或空行
 			if (!temp.startsWith("#") && !"".equals(temp))
 				System.out.println(temp);
 			temp = br.readLine();
 		}
+		br.close();
 	}
 
 }
