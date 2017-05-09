@@ -19,7 +19,7 @@ public class IncReaderTest {
 	@Test
 	public void testReadFiles() throws IOException {
 		// 文件路径，此处应用相对路径
-		String path = "TestFile/options.inc";
+		String path = "src/test/resources/options.inc";
 		File file = new File(path);
 		if (!file.exists() || file.isDirectory())
 			throw new FileNotFoundException();

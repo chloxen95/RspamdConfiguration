@@ -17,7 +17,7 @@ public class TestReadFiles {
 	@Test
 	public void testReadFile() throws IOException {
 		// 文件路径，此处应用相对路径
-		String path = "TestFile/" + confName;
+		String path = "src/test/resources/" + confName;
 		File file = new File(path);
 		if (!file.exists() || file.isDirectory())
 			throw new FileNotFoundException();

@@ -18,7 +18,7 @@ public class ConfReaderTest {
 	
 	public void testReadFile() throws IOException {
 		// 文件路径，此处应用相对路径
-		String path = "TestFile/rspamd.conf";
+		String path = "src/test/resources/rspamd.conf";
 		File file = new File(path);
 		if (!file.exists() || file.isDirectory())
 			throw new FileNotFoundException();
