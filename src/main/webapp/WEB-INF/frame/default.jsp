@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Rspamd Configuration</title>
-<meta name="author" content="chloxen95">
-
 <!-- Base Css Files -->
+<link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
 <link
 	href="assets/libs/jqueryui/ui-lightness/jquery-ui-1.10.4.custom.min.css"
 	rel="stylesheet" />
@@ -16,6 +15,30 @@
 <link href="assets/libs/fontello/css/fontello.css" rel="stylesheet" />
 <link href="assets/libs/animate-css/animate.min.css" rel="stylesheet" />
 <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="assets/libs/jquery/jquery-1.11.3.min.js"></script>
+<script src="assets/libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/libs/fastclick/fastclick.js"></script>
+<script src="assets/libs/jquery-sparkline/jquery-sparkline.js"></script>
+<!-- Demo Specific JS Libraries -->
+<script src="assets/libs/prettify/prettify.js"></script>
+<script src="assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
+<script src="assets/js/init.js"></script>
+<style type="text/css">
+.default-sidebar-menu a, .default-sidebar-menu a:HOVER {
+	background-color: #343838;
+	border-color: #3f4848;
+	height: 50px
+}
+.default-sidebar-text {
+	color: white;
+	font-size: 15px
+}
+.default-sidebar-menu a:FIRST-OF-TYPE {
+	background-color: #68C39F !important;
+	border-color: #68C39F !important;
+}
+</style>
 </head>
 <body class="fixed-left">
 	<!-- Begin page -->
@@ -40,12 +63,10 @@
 								onclick="javascript:toggle_fullscreen()"><i
 									class="icon-resize-full-2"></i></a></li>
 							<li class="dropdown topbar-profile"><a href="#"
-								class="dropdown-toggle" data-toggle="dropdown">
-									<!-- <span
+								class="dropdown-toggle" data-toggle="dropdown"> <!-- <span
 									class="rounded-image topbar-profile-image">
 										<img
-										src="images/users/user-35.jpg"> </span> -->
-										<strong>chloxen95</strong>
+										src="images/users/user-35.jpg"> </span> --> <strong>chloxen95</strong>
 									<i class="fa fa-caret-down"></i>
 							</a></li>
 							<li class="right-opener"><a href="javascript:;"
@@ -82,7 +103,7 @@
 							Hi <b>chloxen95</b>
 						</div>
 						<div class="profile-buttons">
-							<a href="javascript:;"><i class="fa fa-envelope-o pulse"></i></a>
+							<a href="/RspamdConfiguration/"><i class="fa fa-home pulse"></i></a>
 							<a href="#connect" class="open-right"><i
 								class="fa fa-comments"></i></a> <a href="javascript:;"
 								title="Sign Out"><i class="fa fa-power-off text-red-1"></i></a>
@@ -94,39 +115,29 @@
 				<hr class="divider" />
 				<div class="clearfix"></div>
 				<!--- Divider -->
-				<div id="sidebar-menu">
-					<ul>
-						<li class='has_sub'><a href='javascript:void(0);'><i
-								class='icon-home-3'></i><span>Dashboard</span> <span
-								class="pull-right"><i class="fa fa-angle-down"></i></span></a>
-							<ul>
-								<li><a href='index.html' class='active'><span>Dashboard
-											v1</span></a></li>
-								<li><a href='index2.html'><span>Dashboard v2</span></a></li>
-							</ul></li>
-						<li class='has_sub'><a href='javascript:void(0);'><i
-								class='icon-feather'></i><span>UI Elements</span> <span
-								class="pull-right"><i class="fa fa-angle-down"></i></span></a>
-							<ul>
-								<li><a href='alerts.html'><span>Alerts</span></a></li>
-								<li><a href='buttons.html'><span>Buttons</span></a></li>
-							</ul></li>
-						<li class='has_sub'><a href='javascript:void(0);'><i
-								class='icon-pencil-3'></i><span>Forms</span> <span
-								class="pull-right"><i class="fa fa-angle-down"></i></span></a>
-							<ul>
-								<li><a href='forms.html'><span>Form Elements</span></a></li>
-								<li><a href='advanced-forms.html'><span>Advanced
-											Forms</span></a></li>
-							</ul></li>
-					</ul>
-					<div class="clearfix"></div>
+				<div class="list-group default-sidebar-menu">
+					<a href="#" class="list-group-item active">
+						<h4 class="list-group-item-heading">Configuration Files</h4>
+					</a> <a href="conf" class="list-group-item">
+						<h4 class="default-sidebar-text">Conf File</h4>
+					</a> <a href="inc" class="list-group-item">
+						<h4 class="default-sidebar-text">Inc File</h4>
+					</a>
+				</div>
+				<div class="list-group default-sidebar-menu">
+					<a href="#" class="list-group-item active">
+						<h4 class="list-group-item-heading">Rules</h4>
+					</a> <a href="rule" class="list-group-item">
+						<h4 class="default-sidebar-text">Rule</h4>
+					</a> <a href="symbol" class="list-group-item">
+						<h4 class="default-sidebar-text">Symbol</h4>
+					</a> <a href="module" class="list-group-item">
+						<h4 class="default-sidebar-text">Module</h4>
+					</a>
 				</div>
 				<div class="clearfix"></div>
-				<<div class="clearfix"></div>
-				<br>
-				<br>
-				<br>
+				<div class="clearfix"></div>
+				<br> <br> <br>
 			</div>
 			<div class="left-footer" style="height: initial;">
 				<div class="portlets">
@@ -143,7 +154,8 @@
 							</ul>
 						</div>
 					</div>
-				</div></div>
+				</div>
+			</div>
 		</div>
 		<!-- Left Sidebar End -->
 		<!-- Right Sidebar Start -->
@@ -166,16 +178,10 @@
 	<!-- End of page -->
 	<script>
 		var resizefunc = [];
+		$(function(){
+			$(".content").css("height", window.innerHeight - 100);
+		})
 	</script>
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="assets/libs/jquery/jquery-1.11.1.min.js"></script>
-	<script src="assets/libs/bootstrap/js/bootstrap.min.js"></script>
-	<script src="assets/libs/fastclick/fastclick.js"></script>
-	<script src="assets/libs/jquery-sparkline/jquery-sparkline.js"></script>
-	<!-- Demo Specific JS Libraries -->
-	<script src="assets/libs/prettify/prettify.js"></script>
-	<script src="assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
 
-	<script src="assets/js/init.js"></script>
 </body>
 </html>

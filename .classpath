@@ -33,5 +33,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/gson-2.8.0.jar"/>
 	<classpathentry kind="lib" path="lib/sitemesh-3.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/jackson-all-1.9.11.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
