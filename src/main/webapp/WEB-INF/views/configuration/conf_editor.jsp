@@ -2,19 +2,45 @@
 <%@ page session="false"%>
 <html>
 <head>
-<title>Home</title>
+<title>Conf Reader</title>
 <meta name="author" content="chloxen95">
 </head>
 <body>
 	<div class="content">
-		<div class="col-md-3 text-content-block">
-			<div id="file-list"></div>
+		<div class="col-md-3 text-content-block" style="overflow-y:scroll">
+			<table class="table table-bordered table-hover" id="file-list" border="1"></table>
 		</div>
 		<div class="col-md-9 text-content-block">
 			<div id="conf-text" class="text-content"></div>
 		</div>
 	</div>
 	<script type="text/javascript">
+		function getFileContext(fileName){
+			$($.ajax({
+				type : "POST",
+				url : "configuration/context",
+				datatype : "json",
+				data : {
+					fileName : fileName,
+					comment : true,
+					blankLine : true
+				},
+				success : function(result) {
+					$("#conf-text").empty();
+					text = "";
+					$("#conf-text").append(
+							"<pre style=\"width: 100%; height: 100%\" ><textarea id=\"file-context\"  "
+									+"style=\"width: 100%; height: 100%\" rows="
+									+ result.length + " col=500></textarea></pre>")
+					$.each(result, function(index, item) {
+						text = text + item + "\n";
+					})
+					$("#file-context").val(text);
+				}
+			}))
+		}
+	
+	
 		$(function() {
 
 			function readConfJson(result) {
@@ -29,36 +55,53 @@
 			}
 			
 			$.ajax({
-				type : "GET",
-				url : "",
-				datatype : "json",
-				success : function(result){
-					$.each(result, function(index, str){
-						$("#file-list").append("<h4>"+str+"</h4>");
-					})
-				}
-			})
-
-			$.ajax({
 				type : "POST",
-				url : "file/entire",
+				url : "configuration/list",
 				datatype : "json",
 				data : {
-					path : "src/test/resources/options.inc",
-					comment : false,
-					blankLine : false
+					path : "",
+					postfix : "conf"
 				},
-				success : function(result) {
-					text = "";
-					$("#conf-text").append(
-							"<textarea id=\"file-context\" style=\"width: 100%; height: 100%\" rows="
-									+ result.length + " col=500></textarea>")
-					$.each(result, function(index, item) {
-						text = text + item + "\n";
+				success : function(result){
+					$.each(result, function(index, str){
+						if(typeof(str) == "object"){
+							$.each(str, function(index, name){
+								$("#file-list").append("<tr><th class=\"file-name-th\" onclick=\"getFileContext(this.innerText)\">"+name+"</th></tr>");
+							})
+						}
+						else
+							$("#file-list").append("<tr><th class=\"file-name-th\" onclick=\"getFileContext(this.innerText)\">"+str+"</th></tr>");
 					})
-					$("#file-context").val(text);
 				}
 			})
+			
+			$("th.file-name-th").click(function(){
+				getFileContext(this.innerText);
+			})
+
+			function getFileContext(fileName){
+				$.ajax({
+					type : "POST",
+					url : "configuration/context",
+					datatype : "json",
+					data : {
+						fileName : fileName,
+						comment : true,
+						blankLine : true
+					},
+					success : function(result) {
+						text = "";
+						$("#conf-text").append(
+								"<pre style=\"width: 100%; height: 100%\" ><textarea id=\"file-context\"  "
+										+"style=\"width: 100%; height: 100%\" rows="
+										+ result.length + " col=500></textarea></pre>")
+						$.each(result, function(index, item) {
+							text = text + item + "\n";
+						})
+						$("#file-context").val(text);
+					}
+				})
+			}
 		})
 	</script>
 </body>

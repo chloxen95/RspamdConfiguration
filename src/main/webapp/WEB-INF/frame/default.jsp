@@ -15,6 +15,7 @@
 <link href="assets/libs/fontello/css/fontello.css" rel="stylesheet" />
 <link href="assets/libs/animate-css/animate.min.css" rel="stylesheet" />
 <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+<link href="assets/libs/highlight/css/tomorrow.css" rel="stylesheet" type="text/css">
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="assets/libs/jquery/jquery-1.11.3.min.js"></script>
 <script src="assets/libs/bootstrap/js/bootstrap.min.js"></script>
@@ -24,6 +25,7 @@
 <script src="assets/libs/prettify/prettify.js"></script>
 <script src="assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
 <script src="assets/js/init.js"></script>
+<script src="assets/libs/highlight/js/highlight.pack.js"></script>
 <style type="text/css">
 .default-sidebar-menu a, .default-sidebar-menu a:HOVER {
 	background-color: #343838;

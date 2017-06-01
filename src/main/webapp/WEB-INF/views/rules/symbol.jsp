@@ -4,9 +4,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Symbol Reader</title>
 </head>
 <body>
 
+<script type="text/javascript">
+$(function(){
+	$.ajax({
+		type : "GET",
+		url : "rules/symbol/line",
+		datatype : "json",
+		success : function(result){
+			alert(typeof(JSON.parse(result["symbol"])));
+		}
+	})
+	
+})
+</script>
 </body>
 </html>

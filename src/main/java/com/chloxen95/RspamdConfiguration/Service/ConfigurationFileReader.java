@@ -1,12 +1,12 @@
 package com.chloxen95.RspamdConfiguration.Service;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
 public interface ConfigurationFileReader {
 	
-	public List<String> getConfigurationFile(String path, Boolean comment, Boolean blankLine) throws FileNotFoundException, IOException; 
+	public List<String> getConfigurationFileLineList(String path, Boolean comment, Boolean blankLine) throws IOException; 
 	
+	public String getConfigurationFileOneLine(String path) throws IOException;
 
 }
