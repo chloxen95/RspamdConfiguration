@@ -2,6 +2,7 @@ package com.chloxen95.RspamdConfiguration.Controller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.IdentityHashMap;
 import java.util.List;
@@ -17,9 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.chloxen95.RspamdConfiguration.Service.ConfigurationFileList;
 import com.chloxen95.RspamdConfiguration.Service.ConfigurationFileReader;
 import com.chloxen95.RspamdConfiguration.Service.ConfigurationParser;
+import com.chloxen95.RspamdConfiguration.Service.SymbolReader;
 import com.chloxen95.RspamdConfiguration.Service.impl.ConfParserImpl;
 import com.chloxen95.RspamdConfiguration.Service.impl.ConfigurationFileListImpl;
 import com.chloxen95.RspamdConfiguration.Service.impl.ConfigurationFileReaderImpl;
+import com.chloxen95.RspamdConfiguration.Service.impl.SymbolReaderImpl;
 
 @Controller
 public class RuleSymbolModuleController {
@@ -29,6 +32,7 @@ public class RuleSymbolModuleController {
 	ConfigurationParser cp;
 	ConfigurationFileReader cfr;
 	ConfigurationFileList cfl;
+	SymbolReader sr;
 
 	@RequestMapping(value = "/rule", method = RequestMethod.GET)
 	public String JumptoRulePage(HttpServletRequest request) {
@@ -81,11 +85,20 @@ public class RuleSymbolModuleController {
 
 	}
 	
-	@RequestMapping(value = "/rules/symbol/line", method = RequestMethod.GET)
+	@RequestMapping(value = "/rules/symbol/json", method = RequestMethod.GET)
 	@ResponseBody
-	public String GetSymbolJsonByOneLineFile(String fileName) throws IOException{
+	public String GetSymbolByJsonOneLineFile(String fileName) throws IOException{
 		cfr = new ConfigurationFileReaderImpl();
 		return cfr.getConfigurationFileOneLine(pathPrefix + "symbol/symbol.min.json");
+	}
+	
+	@RequestMapping(value = "/rules/symbol/db", method = RequestMethod.GET)
+	@ResponseBody
+	public Map<String, Object> GetSymbolBySQL() throws SQLException{
+		Map<String, Object> result = new HashMap<>();
+		sr = new SymbolReaderImpl();
+		result.put("symbol", sr.getSymbol());
+		return result;
 	}
 
 }
