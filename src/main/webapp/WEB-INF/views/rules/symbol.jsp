@@ -9,9 +9,12 @@
 <body>
 	<div class="content">
 		<div class="md-col-9" style="overflow-y:scroll">
-			<table  class="table table-bordered table-hover" id="symbol-detail" border="1">
-				<tr><th>Symbol Name</th><th>Weight</th><th>Description</th>
-				<th>Frequency</th><th>Frequency Stddev</th><th>Time</th><th>Group</th></tr>
+			<table id="symbol-detail">
+				<thead>
+					<tr><th>Symbol Name</th><th>Weight</th><th>Description</th>
+					<th>Frequency</th><th>Frequency Stddev</th><th>Time</th><th>Group</th></tr>
+				</thead>
+				<tbody id="symbol-detail-body"></tbody>
 			</table>
 		</div>
 	</div>
@@ -35,6 +38,9 @@ $(function(){
 				+ "</th><th>" + array[2] + "</th><th>" + array[3] + "</th><th>"
 				+ array[4] + "</th><th>" + array[5] + "</th><th>" + array[6] + "</th></tr>");
 			})
+			$("#symbol-detail").DataTable({
+				"pageLength": 18
+			});
 		}
 	})
 	

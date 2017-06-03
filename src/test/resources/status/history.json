@@ -1,0 +1,14 @@
+{
+  "version": "1.5.6",
+  "auth": "ok",
+  "uptime": 262185,
+  "clean": 25,
+  "probable": 280,
+  "greylist": 111,
+  "reject": 39,
+  "soft_reject": 0,
+  "scanned": 455,
+  "learned": 152,
+  "read_only": false,
+  "config_id": "p6mwrb9t7ba18nw4tt3nfh9ynh64gd33grsgwmg75d9kphxe77sop59dg13ty59zkqbcer5538bk5o18oxu7re1npjtamzyfr34xmgn"
+}

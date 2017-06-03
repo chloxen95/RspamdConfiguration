@@ -16,7 +16,8 @@
 <link href="assets/libs/animate-css/animate.min.css" rel="stylesheet" />
 <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 <link href="assets/libs/highlight/css/tomorrow.css" rel="stylesheet" type="text/css">
-<link href="assets/libs/dataTables/css/jquery.dataTables.css" rel="stylesheet" type="text/css">
+<!-- <link href="assets/libs/dataTables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"> -->
+<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="assets/libs/jquery/jquery-1.11.3.min.js"></script>
 <script src="assets/libs/bootstrap/js/bootstrap.min.js"></script>
@@ -27,7 +28,9 @@
 <script src="assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
 <script src="assets/js/init.js"></script>
 <script src="assets/libs/highlight/js/highlight.pack.js"></script>
-<script src="assets/libs/dataTables/js/jquery.dataTables.js"></script>
+<script src="assets/libs/echarts/js/echarts.min.js"></script>
+<!-- <script src="assets/libs/dataTables/js/jquery.dataTables.min.js"></script> -->
+<script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
 <style type="text/css">
 .default-sidebar-menu a, .default-sidebar-menu a:HOVER {
 	background-color: #343838;
@@ -139,11 +142,20 @@
 						<h4 class="default-sidebar-text">Module</h4>
 					</a>
 				</div>
+				<div class="list-group default-sidebar-menu">
+					<a href="#" class="list-group-item active">
+						<h4 class="list-group-item-heading">Status</h4>
+					</a> <a href="history" class="list-group-item">
+						<h4 class="default-sidebar-text">History</h4>
+					</a> <a href="current" class="list-group-item">
+						<h4 class="default-sidebar-text">Current</h4>
+					</a>
+				</div>
 				<div class="clearfix"></div>
 				<div class="clearfix"></div>
 				<br> <br> <br>
 			</div>
-			<div class="left-footer" style="height: initial;">
+			<!-- <div class="left-footer" style="height: initial;">
 				<div class="portlets">
 					<div id="chat_groups" class="widget transparent nomargin">
 						<h2>Chat Groups</h2>
@@ -159,7 +171,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 		<!-- Left Sidebar End -->
 		<!-- Right Sidebar Start -->
