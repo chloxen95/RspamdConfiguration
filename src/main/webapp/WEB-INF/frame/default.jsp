@@ -66,6 +66,15 @@
 				<div class="container">
 					<div class="navbar-collapse2">
 						<ul class="nav navbar-nav navbar-right top-navbar">
+							<li class="dropdown topbar-profile"><a href="#"
+								class="dropdown-toggle"><strong>Merge</strong>
+							</a></li>
+							<li class="dropdown topbar-profile"><a href="#"
+								class="dropdown-toggle"><strong>Override</strong>
+							</a></li>
+							<li class="dropdown topbar-profile"><a href="#"
+								class="dropdown-toggle"><strong>ForceEdit</strong>
+							</a></li>
 							<li class="dropdown iconify hide-phone"><a href="#"
 								onclick="javascript:toggle_fullscreen()"><i
 									class="icon-resize-full-2"></i></a></li>

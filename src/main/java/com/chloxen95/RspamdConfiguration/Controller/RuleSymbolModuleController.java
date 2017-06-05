@@ -87,7 +87,7 @@ public class RuleSymbolModuleController {
 	
 	@RequestMapping(value = "/rules/symbol/json", method = RequestMethod.GET)
 	@ResponseBody
-	public String GetSymbolByJsonOneLineFile(String fileName) throws IOException{
+	public String GetSymbolByJsonOneLineFile() throws IOException{
 		cfr = new ConfigurationFileReaderImpl();
 		return cfr.getConfigurationFileOneLine(pathPrefix + "symbol/symbol.min.json");
 	}
